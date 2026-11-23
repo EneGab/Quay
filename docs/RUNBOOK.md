@@ -130,12 +130,12 @@ Everything below this point was originally written against the single testnet
 Render service (`quay-api`). After the mainnet cutover (`docs/MAINNET.md`)
 there are **two independent services with two independent sets of secrets**:
 
-| | Testnet (default below) | Mainnet |
+| | Testnet (retired 2026-11-23) | Mainnet |
 |---|---|---|
-| Render service name | `quay-api` | `quay-api-mainnet` |
-| Blueprint | `render.yaml` | `render.mainnet.yaml` |
+| Render service name | `quay-api` (retired) | `quay-api-mainnet` |
+| Blueprint | `render.yaml` (blueprint preserved) | `render.mainnet.yaml` |
 | `STELLAR_NETWORK` | `testnet` | `public` |
-| API URL | `https://quay-api.onrender.com` | the host Render assigns `quay-api-mainnet`, or your custom domain if `HOME_DOMAIN` is set — check the Render dashboard, do not assume it |
+| API URL | `https://quay-api.onrender.com` (retired; service suspended) | the host Render assigns `quay-api-mainnet`, or your custom domain if `HOME_DOMAIN` is set — check the Render dashboard, do not assume it |
 | Database | testnet Turso DB | a **separate** Turso DB — never point both services at the same one |
 | Off-ramp | `testanchor` (SDF sandbox) | `anchor` (a real production anchor) or `none` |
 
@@ -259,10 +259,13 @@ configured environment on one schedule, each with its own history series and
 its own section in `docs/STATUS.md` — a healthy testnet can never stand in
 for an unmonitored mainnet (issue 8.8).
 
-**Testnet is always checked**, with the same defaults and unprefixed target
-ids (`api` / `web` / `synthetic`) this script has always used —
-`https://quay-api.onrender.com` / `https://quay-web.vercel.app`, overridable
-via `UPTIME_API_URL` / `UPTIME_WEB_URL`.
+**Testnet is always checked** by default with the unprefixed target ids
+(`api` / `web` / `synthetic`). However, the default testnet API service
+(`https://quay-api.onrender.com`) is retired (HTTP 503, suspended), so default
+checks against it will fail unless overridden with a live endpoint via
+`UPTIME_API_URL` / `UPTIME_TESTNET_API_URL`. The web target defaults to
+`https://quay-web.vercel.app` (overridable via `UPTIME_WEB_URL` /
+`UPTIME_TESTNET_WEB_URL`).
 
 **Mainnet is checked only once you configure it — there is no default of any
 kind.** Set these as repository **Variables** (Settings → Secrets and

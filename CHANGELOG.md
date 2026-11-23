@@ -125,6 +125,13 @@ docs:check-env-docs` keeps it in step with the code.
 
 ### Changed
 
+- **Documentation updated for mainnet dashboard and retired testnet API**:
+  updated `docs/PROPOSAL.md` to point the live demo at the mainnet dashboard
+  with payments marked real and cash-out directed to local testnet, updated
+  `docs/RUNBOOK.md` to mark the testnet `quay-api` service as retired (and noted
+  that default uptime checks against it will fail), and updated `docs/MAINNET.md`
+  with Circle's active USDC contract addresses link.
+
 - **Database schema is now managed by Drizzle migrations** instead of boot-time
   DDL. Existing databases are stamped with a baseline on first boot. New
   scripts: `pnpm db:generate`, `db:migrate`, `db:status`, `db:check`.
