@@ -125,6 +125,14 @@ docs:check-env-docs` keeps it in step with the code.
 
 ### Changed
 
+- **README updated for mainnet dashboard and retired testnet API**: removed
+  references and links to the retired testnet API (`quay-api.onrender.com`),
+  clarified that the public dashboard ([quay-web.vercel.app](https://quay-web.vercel.app))
+  runs on mainnet with real payments, directed users to run Quay locally on
+  testnet with `OFFRAMP=testanchor` to test cash-out without real funds, and
+  updated quickstart `curl` examples to use `$QUAY_API_URL` with
+  `http://localhost:8787` as the local default.
+
 - **Database schema is now managed by Drizzle migrations** instead of boot-time
   DDL. Existing databases are stamped with a baseline on first boot. New
   scripts: `pnpm db:generate`, `db:migrate`, `db:status`, `db:check`.
